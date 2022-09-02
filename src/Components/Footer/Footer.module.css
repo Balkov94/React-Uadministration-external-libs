@@ -1,0 +1,16 @@
+.footer{
+     display: flex;
+     justify-content: center;    
+     align-items: center;
+     width: 100%;
+     height: fit-content;
+     padding-top: 8px;
+     padding-bottom: 8px;
+     background-color: black;
+     vertical-align: baseline;
+     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+     opacity: 0.8;
+}
+.footer span{
+   font-size: 24px;
+}

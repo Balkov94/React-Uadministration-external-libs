@@ -1,0 +1,43 @@
+.filterContainer{
+     width: 100%;
+     height: fit-content;
+     /* background-color: rgb(113, 113, 113); */
+     display: flex !important;
+     flex-direction: row;
+     flex-wrap: wrap !important;
+     justify-content: center;
+     align-items: center;
+}
+
+.filterContainer form.filterForm{
+     display: flex !important;
+     background-color: none !important;
+     border: none !important;
+     width: fit-content !important;
+     border: 2px solid green !important;
+     border-radius: none !important;
+     height: fit-content !important;
+}
+
+@media only screen and (max-width: 700px) {
+     .filterContainer {
+       flex-direction: column !important;
+       zoom: 0.8;
+     }
+     .filterContainer .filterForm{
+          flex-direction: column !important;
+          zoom: 0.8;
+        }
+   }
+
+   @media only screen and (max-width: 500px) {
+     .filterContainer {
+       flex-direction: column !important;
+       zoom: 0.8;
+     }
+     .filterContainer .filterForm{
+          flex-direction: column !important;
+          zoom: 0.8;
+        }
+   }
+
