@@ -14,6 +14,7 @@ import { GenderEnum, RoleEnum, StatusEnum, UserClass } from '../../Rest-APi-Clie
 import EditFormMUI from '../EditFormMUI/EditFormMUI';
 
 import styles from './UserCardMUI.module.css';
+import { blockScrolling } from '../../Components/AllFormTypes/FormContainer';
 interface ExpandMoreProps extends IconButtonProps {
    expand: boolean;
 }
@@ -42,13 +43,8 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
    const handleEditMode = () => {
       setEditMode(editMode => !editMode);
       setCardMenu(false);
-      // iff edit mode is on block scrolling
-      // if (editMode === false) {
-      //      document.body.style.overflow = "hidden";
-      // }
-      // else {
-      //      document.body.style.overflow = "visible";
-      // }
+      // if edit mode is on block scrolling
+      blockScrolling(editMode)
    }
 
    const onEdit = (updatedUser: UserClass) => {

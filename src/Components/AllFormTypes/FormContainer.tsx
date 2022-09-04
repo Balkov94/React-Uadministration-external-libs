@@ -82,14 +82,9 @@ function FormContainer() {
 
    const handleEditMode = () => {
       setEditMode(editMode => !editMode);
-
-      // iff edit mode is on block scrolling
-      // if (editMode === false) {
-      //      document.body.style.overflow = "hidden";
-      // }
-      // else {
-      //      document.body.style.overflow = "visible";
-      // }
+      // if edit mode is on block scrolling
+      blockScrolling(editMode)
+  
    }
 
    const handleUserEdition = (formData: UserClass) => {
@@ -117,7 +112,7 @@ function FormContainer() {
                      <LoginFormMUI
                         switchForm={handleFormType}
                         handleLoginData={handleLoginData}
-                     ></LoginFormMUI>                          
+                     ></LoginFormMUI>
                      :
                      <RegisterFormMUI
                         switchForm={handleFormType}
@@ -138,3 +133,14 @@ function FormContainer() {
 }
 
 export default FormContainer;
+
+
+// *func Block srcoling when EditForm is open (EditForm is position FIXED)
+export const blockScrolling = (editMode:boolean) => {
+   if (editMode === false) {
+      document.body.style.overflow = "hidden";
+   }
+   else {
+      document.body.style.overflow = "visible";
+   }
+}
