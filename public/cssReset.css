@@ -9,6 +9,17 @@ body{
      box-sizing: border-box;
      color: white;
 }
+ul li{
+   color: black !important;
+   background-color:black;
+}
+ul li:hover{
+   background-color: rgb(37, 37, 37)!important;
+   color: white !important;
+}
+div .MuiPaper-root{
+   background-color: gray;
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

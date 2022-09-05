@@ -31,7 +31,7 @@ function ControllerTextFieldInput<TFieldValues extends FieldValues>(
                     control={control}
                     render={({ field }) =>
                          <TextField label={label} disabled={disabled} size={size} error={!!error}
-                              helperText={error || ''} {...field} />
+                              helperText={error || ''} placeholder={name} {...field} />
                     }
                     rules={rules}
                />

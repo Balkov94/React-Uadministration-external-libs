@@ -2,10 +2,6 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -19,10 +15,20 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import ControllerTextFieldInput from '../ControllerTextFieldInput/ControllerTextFieldInput';
-import { StringifyOptions } from 'querystring';
-import { width } from '@mui/system';
 
-const theme = createTheme();
+
+const theme = createTheme({
+   components: {
+      // Name of the component
+      MuiButtonBase: {
+         defaultProps: {
+            // The props to change the default for.
+            disableRipple: true, // No more ripple, on the whole application 💣!
+         },
+      },
+   },
+
+});
 
 export interface IFormData {
    id?: IdType
@@ -63,8 +69,9 @@ const schema = yup.object({
    role: yup.string(),
    pucture: yup.string().url(),
    description: yup.string(),
-
 }).required();
+
+
 
 export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, switchForm, handleShowCreateForm }: IRegisterFormProps) {
    const { handleSubmit, control, formState: { errors } } = useForm<IFormData>({
@@ -138,7 +145,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, sw
       if (currPicture === "") {
          const genderEnumNumber = data.gender as unknown as number;
          if (genderEnumNumber == 1) {
-            data.picture = require(`../../images/mavatar.png`); 
+            data.picture = require(`../../images/mavatar.png`);
          }
          else {
             data.picture = require(`../../images/favatar.png`);
@@ -185,7 +192,45 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, sw
                {/* _______________________________________________________________ */}
                <Box component="form" noValidate
                   onSubmit={handleSubmit(sendFormData)}
-                  sx={{ mt: 3 }}>
+                  sx={{
+                     mt: 3,
+                     '& .MuiTextField-root': {
+                        bgcolor: "rgb(10,25,41)",
+                        marginBottom: "18px",
+                        zoom: "0.8",
+                     },
+                     '& .MuiInputBase-input': {
+                        // color: "white",
+                        fontSize: "20px",
+                        bgcolor:"rgb(10,25,41)",
+                     },
+                     '& .MuiInputBase-root':{
+                        color: "white",
+                     },
+                     '& > :not(style)': {
+                        color: "white"
+                     },
+                     // label + placeholder
+                     '& .MuiInputLabel-root': {
+                        fontSize: "22px",
+                        color: "gray",
+                     },
+                     //  border color
+                     '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                           borderColor: 'green',
+                        },
+                        '&:hover fieldset': {
+                           borderColor: 'rgb(34,134,247)',
+                        },
+                        '&.Mui-focused fieldset': {
+                           borderColor: 'primary',
+                        },
+                     },
+                    
+
+                  }}
+               >
                   <Grid container spacing={2}>
                      <Grid item xs={12} sm={6}>
                         <ControllerTextFieldInput
@@ -211,21 +256,30 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, sw
                      </Grid>
 
                      <Grid item xs={12} sm={6}>
-                        <FormControl sx={{ m: 1, minWidth: 100 }}>
+                        <FormControl  size="small">
                            <InputLabel id="demo-simple-select-autowidth-label">Gender</InputLabel>
                            <Controller
                               control={control}
                               name="gender"
                               render={({ field: { onChange, value } }) => (
                                  <Select
-                                    autoWidth
+                                    fullWidth
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={value}
                                     label="Gender"
                                     onChange={onChange}
+                                    style={{ height: "59px",paddingTop:"20px"}}  
+                                    MenuProps={{
+                                       sx: {     
+                                          fontSize:"16px",         
+                                          "&& .Mui-selected": {
+                                             backgroundColor: "gray"
+                                          },   
+                                       }
+                                    }}
                                  >
-                                    <MenuItem value={GenderEnum.Male}>Male</MenuItem>
+                                    <MenuItem value={GenderEnum.Male} >Male</MenuItem> 
                                     <MenuItem value={GenderEnum.Female}>Female</MenuItem>
                                  </Select>
                               )}
@@ -263,9 +317,9 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, sw
                                        id="demo-simple-select"
                                        value={value}
                                        label="Role"
-                                       onChange={onChange}
+                                       onChange={onChange}            
                                     >
-                                       <MenuItem value={RoleEnum.User}>User</MenuItem>
+                                       <MenuItem  value={RoleEnum.User}>User</MenuItem>
                                        <MenuItem value={RoleEnum.Admin}>Admin</MenuItem>
                                     </Select>
                                  )}
@@ -280,9 +334,9 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, sw
                            control={control}
                         ></ControllerTextFieldInput>
                      </Grid>
-                     <InputLabel id="description" sx={{ width: "100%", pl: "32px" }}>Description:</InputLabel>
+                     <InputLabel id="description" sx={{ width: "100%", pl: "32px",pr: "32px"}}>Description:</InputLabel>
                      <Grid item xs={12}>
-                        <FormControl sx={{ m: 1, minWidth: 60, margin: "auto" }}>
+                        <FormControl sx={{ m: 1, minWidth: 60, textAlign:"center" }}>
                            <Controller
                               control={control}
                               name="description"
@@ -292,6 +346,8 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, sw
                                     value={value}
                                     aria-label="minimum height"
                                     minRows={3}
+                                    placeholder="Not necessary only if you are in the mood &#128516;"
+                                    style={{ width: 386,height:150,margin:"auto" }}
                                  />
                               )}
                            />

@@ -39,22 +39,22 @@ const schema = yup.object({
 }).required();
 
 const theme = createTheme(
-  // {
-//    components: {
-//       // Name of the component
-//       MuiTextField: {
-//         styleOverrides: {
-//           // Name of the slot
-         
-//           root: {
-//             // Some CSS
-//             // height: CARD_CONTENT_HEIGHT,
-//             color:"white"
-//           },
-//         },
-//       },
-//     },
-//   }
+   // {
+   //    components: {
+   //       // Name of the component
+   //       MuiTextField: {
+   //         styleOverrides: {
+   //           // Name of the slot
+
+   //           root: {
+   //             // Some CSS
+   //             // height: CARD_CONTENT_HEIGHT,
+   //             color:"white"
+   //           },
+   //         },
+   //       },
+   //     },
+   //   }
 );
 // ___________________________________
 // const styles = (theme:any) => ({
@@ -65,7 +65,7 @@ const theme = createTheme(
 // _________________________________
 
 export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginFormProps) {
-   
+
    // ______________________________________________________
    const { handleSubmit, control, formState: { errors } } = useForm<ILoginFormInputs>({
       defaultValues: { username: "", password: "" },
@@ -94,7 +94,7 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  
+
                }}
             >
                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -106,31 +106,49 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
 
                {/* FORM ______________________________________________________ */}
                {/* !!! Controller syntax without GENERIC factory function */}
-               <Box component="form" 
-               onSubmit={handleSubmit(sendSubmit)} 
-               noValidate 
-               autoComplete="off"
-               sx={{ mt: 1 ,
-                  '& .MuiTextField-root': {
-                     bgcolor:"black",
-                     paddingBottom:"0px",
-                    
-                   },
-                   '& .MuiInputBase-input':{
-                     color:"white",
-                   },
-                   '& > :not(style)': { 
-                     borderBottom:"1px solid gray",
-                     color:"white"
-                    },
-                    '& .MuiInputLabel-root': {
-                     color:"gray",
-                     fontSize:"18px"
-                    
-                   },
-               }}
-              
-               
+               <Box component="form"
+                  onSubmit={handleSubmit(sendSubmit)}
+                  noValidate
+                  autoComplete="off"
+                  sx={{
+                     mt: 1,
+                     '& .MuiTextField-root': {
+                        bgcolor: "rgb(10,25,41)!important",
+                        marginBottom: "18px",
+                        zoom: "0.8",
+                     },
+                     '& .MuiInputBase-input': {
+                        color: "white",
+                        fontSize: "20px"
+                     },
+                     '& > :not(style)': {
+                        color: "white"
+                     },
+                     // label + placeholder
+                     '& .MuiInputLabel-root': {
+                        fontSize: "22px",
+                        color: "gray",
+                     },
+                     //  border color
+                     '& .MuiOutlinedInput-root': {
+                        bgcolor:"black",
+                        '& fieldset': {
+                           borderColor: 'green',
+                        },
+                        '&:hover fieldset': {
+                           borderColor: 'rgb(34,134,247)',
+                        },
+                        '&.Mui-focused fieldset': {
+                           borderColor: 'primary',
+                        },
+                     },
+                     '& .MuiFormHelperText-root': {
+                        fontSize: "16px"
+                     },
+
+   
+                     
+                  }}
                >
                   <Controller
                      control={control}
@@ -143,15 +161,14 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
                            label="Username"
                            name="username"
                            placeholder='username'
-                           color="secondary"
                            value={value}
                            onChange={onChange}
                            error={errors.username?.message ? true : false}
                            helperText={errors.username?.message || ""}
-                           // className={styles["MuiInputBase-root"]}
-                           // sx={{input:{color:"primary"}}}
-                      
-                           
+                        // className={styles["MuiInputBase-root"]}
+                        // sx={{input:{color:"primary"}}}
+
+
                         />
                      )}
                   />

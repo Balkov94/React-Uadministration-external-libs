@@ -68,6 +68,8 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
                                    You edited ${user.username}'s profile.`)			 
          })
          .catch(err => alert(err))
+         // hover effects
+       
    }
    return (
       <>
@@ -79,8 +81,26 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
                   isAdminEdition={true}
                   handleEditMode={handleEditMode}></EditFormMUI>)
                :
-               <Card sx={{ maxWidth: 345, paddingBottom: "25px", position: "relative" }}>
-                  <CardHeader
+               <Card sx={{ maxWidth: 345, 
+               paddingBottom: "25px", position:"relative" ,
+               bgcolor:"black!important",
+               boxShadow: "2px 2px 6px rgb(102, 223, 159)",
+               color:"white",
+               
+                  '& MuiCardHeader-subheader':{
+                     color:"white"
+                  },
+                  '& :hoover .MuiCard-root':{
+                     border:"2px solid red"
+                  },
+                  '&:hover': {
+                     boxShadow: "2px 2px 6px white",
+                     
+                   },
+                         
+                }}>
+
+                  <CardHeader sx={{color:"white",}}
                      avatar={
                         <Avatar sx={{ bgcolor: red[300] }} aria-label="recipe">
                            {user.fname[0]}{user.lname[0]}
@@ -91,8 +111,16 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
                            <MoreVertIcon />
                         </IconButton>
                      }
+                     titleTypographyProps={{
+                        fontSize: "22px",
+                        color:"white"
+                      }}
+                     subheaderTypographyProps={{
+                        fontSize: "18px",
+                        color:"white"
+                      }}
                      title={user.username}
-                     subheader={`${user.fname} \u00A0\u00A0\ ${user.lname}`}
+                     subheader ={`${user.fname}  ${user.lname}`}
                   />
                   <CardMedia
                      component="img"
@@ -110,7 +138,7 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
                         </div>
                      )
                   }
-                  <CardContent sx={{ boxShadow: "2px 2px 6px rgb(102, 223, 159)" }}>
+                  <CardContent sx={{fontSize:"16px"}}>
                      <p style={{ paddingBottom: "8px" }}>Gender: {GenderEnum[user.gender]}</p>
                      <p style={{ paddingBottom: "8px" }}>Status: {StatusEnum[user.status]}</p>
                      <p style={{ paddingBottom: "8px" }}>Role: {RoleEnum[user.role]}</p>
