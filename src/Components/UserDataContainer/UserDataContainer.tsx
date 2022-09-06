@@ -3,6 +3,7 @@ import { GenderEnum, RoleEnum, StatusEnum, UserClass } from "../../Rest-APi-Clie
 import AllUsersContainer from "../AllUsersContainer/AllUsersContainer";
 import { IEditMode } from "../AllFormTypes/FormContainer";
 import EditFormMUI from "../../MUIComponents/EditFormMUI/EditFormMUI";
+import { Button } from "@mui/material";
 
 interface IUserDataContainerProps {
    loggedUser: UserClass | undefined; //IFormData | UserClass(parent conditional rendering checkED)
@@ -44,16 +45,19 @@ function UserDataContainer({ loggedUser,
                </div>
 
             </div>
-            <button
+         
+            <Button type="submit" variant="contained"
+               sx={{ mt: 3, mb: 2 }}
                onClick={handleEditMode}
                className={styles.editProfileBtn}
-            >Edit profile
-            </button>
-            <button
-               onClick={handleIslogged}
+            > edit profile</Button>
+            <Button type="submit" variant="contained"
+               sx={{ mt: 3, mb: 2 }}
                className={styles.logoutBtn}
-            >Logout
-            </button>
+               onClick={handleIslogged}
+            > Logout</Button>
+
+
          </div>
 
          {currEditMode

@@ -150,11 +150,5 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
          }
       </>
 
-
-
-
-
-
-
    );
 }

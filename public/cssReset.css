@@ -21,6 +21,24 @@ div .MuiPaper-root{
    background-color: gray;
 }
 
+.MuiFormHelperText-root{
+   font-size: 18px!important;
+}
+input:-internal-autofill-selected{
+   background-color: black;
+}
+
+/* HACK AUTOFILL !!!!! WORKING */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
+    transition-delay: background-color 5000s, color 5000s;
+}
+
+
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,

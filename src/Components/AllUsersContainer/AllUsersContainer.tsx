@@ -5,6 +5,7 @@ import Filters, { IFilterValues } from "../FIlters/Filter";
 import RegisterFormMUI, { IFormData } from "../../MUIComponents/RegisterFormMUI/RegisterFormMUI";
 import styles from "./AllUsersContainer.module.css"
 import UserCardMUI from "../../MUIComponents/UserCardMUI/UserCardMUI";
+import { Button } from "@mui/material";
 
 interface IAllUserContainerProps {
    loggedUser: IFormData;
@@ -112,14 +113,20 @@ function AllUsersContainer({ loggedUser }: IAllUserContainerProps) {
 
    return (
       <div className={styles.allUsersContainer}>
-         <h1 className={styles.userListTitle}>Users list</h1>
+         {
+            showCreateForm===false
+            ?<h1 className={styles.userListTitle}>Users list</h1>
+            :<p className={styles.userListTitle}>Creating new user ...</p>
+         }  
          {
             showCreateForm ?
                null
                :
-               <button className={styles.createNewUser}
-                  onClick={() => setShowCreateForm(showCreateForm => !showCreateForm)}
-               > (<i className="fa fa-user-plus" style={{ fontSize: "18px", color: "white" }}>   create new user</i></button>
+               <Button type="submit" variant="contained"
+               sx={{ mt: 3, mb: 2 }}
+               className={styles.createNewUser}
+               onClick={() => setShowCreateForm(showCreateForm => !showCreateForm)}
+            > Create new user</Button>    
          }
 
          {

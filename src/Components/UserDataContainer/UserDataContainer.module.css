@@ -55,15 +55,16 @@
 }
 
 .editProfileBtn {
-     margin-top: 28px;
-     width: 170px;
-     bottom: 0;
-     left: 0;
+    margin-top: 28px;
+   width: 220px;
+   text-align: center;
+   margin-left: auto!important;
+   margin-right: auto !important;
 }
 
 .logoutBtn {
-     position: absolute;
-     right: 0px;
+     position: absolute!important;
+     right: 40px;
      top: 0px;
 }
 
