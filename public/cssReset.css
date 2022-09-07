@@ -24,9 +24,6 @@ div .MuiPaper-root{
 .MuiFormHelperText-root{
    font-size: 18px!important;
 }
-input:-internal-autofill-selected{
-   background-color: black;
-}
 
 /* HACK AUTOFILL !!!!! WORKING */
 input:-webkit-autofill,
@@ -36,6 +33,12 @@ input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
     transition-delay: background-color 5000s, color 5000s;
 }
+
+
+/* .Mui-disabled{
+   color:rgb(230, 162, 4) !important;
+
+}  */
 
 
 

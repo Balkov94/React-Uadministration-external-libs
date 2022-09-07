@@ -11,33 +11,45 @@
 
 .filterContainer form.filterForm{
      display: flex !important;
-     background-color: none !important;
+     flex-direction: row;
+     justify-content: center!important;
+     align-content: center;
+     padding-bottom: 12px;
+      font-size: 18px;
+      gap: 15px;
+     /* background-color: rgb(74, 6, 6) !important; */
      border: none !important;
      width: fit-content !important;
      border: 2px solid green !important;
      border-radius: none !important;
      height: fit-content !important;
 }
+.filterContainer form label{
+   color:white;
+   padding-top: 6px;
+   opacity: 0.8;
+}
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
      .filterContainer {
-       flex-direction: column !important;
-       zoom: 0.8;
+       /* flex-direction: column !important; */
+       zoom: 0.9;
      }
      .filterContainer .filterForm{
-          flex-direction: column !important;
+          /* flex-direction: column !important; */
           zoom: 0.8;
+        
         }
    }
 
-   @media only screen and (max-width: 500px) {
-     .filterContainer {
+   @media only screen and (max-width: 530px) {
+     .filterContainer .filterForm{
        flex-direction: column !important;
-       zoom: 0.8;
+       zoom: 0.9;
      }
      .filterContainer .filterForm{
           flex-direction: column !important;
-          zoom: 0.8;
+          zoom: 0.9;
         }
    }
 

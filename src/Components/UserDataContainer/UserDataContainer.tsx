@@ -45,7 +45,6 @@ function UserDataContainer({ loggedUser,
                </div>
 
             </div>
-         
             <Button type="submit" variant="contained"
                sx={{ mt: 3, mb: 2 }}
                onClick={handleEditMode}
@@ -56,8 +55,6 @@ function UserDataContainer({ loggedUser,
                className={styles.logoutBtn}
                onClick={handleIslogged}
             > Logout</Button>
-
-
          </div>
 
          {currEditMode

@@ -19,17 +19,10 @@ function Filters({ onfilterChange, filterValues }: IFilterProps) {
 
 
      const hadnleRole = (event: React.ChangeEvent<HTMLSelectElement>) => {
-          // let role = event.target.value === "2" ? "Admin" :
-          //      (event.target.value === "1") ? "User" : "All";
-          // setRole(role);
           setRole(event.target.value);
 
      }
      const handleStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
-          // let status = event.target.value === "1" ? "Active" :
-          //      (event.target.value === "2") ? "Deactivated" :
-          //           (event.target.value === "3") ? "Suspended" :"All";
-          // setStatus(status);
           setStatus(event.target.value);
      }
 
@@ -51,14 +44,12 @@ function Filters({ onfilterChange, filterValues }: IFilterProps) {
      return (
           <div className={styles.filterContainer}>
                <form action="submit" onChange={(event) => onFilterFormChange(event)} className={styles.filterForm}>
-                    <div >
+                    {/* <div> */}
                          <label htmlFor="searchText">Search by names or username:</label>
                          <input type="text" name="searchText" id="searchText"
                               value={searchText}
-                              onChange={(event) => handleInput(event)}
-                              
+                              onChange={(event) => handleInput(event)}     
                          />
-
                          <label htmlFor="filter-role">Filter by Role:</label>
                          <select name="role" id="filter-role"
                               onChange={(event) => hadnleRole(event)}
@@ -77,11 +68,9 @@ function Filters({ onfilterChange, filterValues }: IFilterProps) {
                               <option value={StatusEnum.Deactivated}>Deactivated</option>
                               <option value={StatusEnum.Suspended}>Suspended</option>
                          </select>
-                         {/* <button type="submit">Filter</button> */}
-                    </div>
+                    {/* </div> */}
                </form>
           </div>
-
 
      );
 }

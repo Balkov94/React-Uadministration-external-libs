@@ -125,8 +125,6 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
                {/* !!! Controller syntax without GENERIC factory function */}
                <Box component="form"
                   onSubmit={handleSubmit(sendSubmit)}
-
-                  autoComplete="off"
                   sx={{
                      mt: 1,
                      ...formsMUIoverride

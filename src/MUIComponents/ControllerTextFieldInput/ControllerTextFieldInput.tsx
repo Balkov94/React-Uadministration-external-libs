@@ -12,9 +12,11 @@ interface FormInputTextProps<TFieldValues extends FieldValues> {
    error?: string | undefined;
    type?: string;
    readOnly?: boolean;
-
+   maxLength?:number;
    resetImgURl?: () => void;
    defaultValue?: string;
+   variant?:"outlined" | "standard" | "filled" | undefined;
+   autoFocus?:boolean|undefined,
 }
 
 
@@ -29,6 +31,9 @@ function ControllerTextFieldInput<TFieldValues extends FieldValues>(
       error = undefined,
       type,
       readOnly,
+      maxLength=15,
+      variant="outlined",
+      autoFocus=false,
 
    }: FormInputTextProps<TFieldValues>) {
 
@@ -40,13 +45,17 @@ function ControllerTextFieldInput<TFieldValues extends FieldValues>(
             control={control}
             render={({ field }) =>
                <TextField
-                  label={readOnly?(label+"-unchangeable*"):label}
+                  label={readOnly?(label+" is not changeable*"):label}
                   disabled={disabled}
                   size={size}
                   type={type}
                   error={!!error}
+                  variant={variant}
                   helperText={error || ''} placeholder={name}  
-                  inputProps={{ readOnly}}
+                  autoFocus={autoFocus}
+                  inputProps={{ maxLength,readOnly}}
+            
+         
                   {...field} 
                />
             }

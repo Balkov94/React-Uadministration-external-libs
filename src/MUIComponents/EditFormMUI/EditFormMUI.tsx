@@ -20,30 +20,32 @@ import styles from "./overrideMUIStyles.module.css"; //some little override -> m
 import { formsMUIoverride } from '../LoginFormMUI/LoginFormMUI';
 
 const theme = createTheme();
+  
+
 
 //matches(/[^a-zA-ZаА-яЯ]/)
 const URL = /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
 const schema = yup.object({
-   fname: yup.string().required("Required field").min(2,"First name must be at least 2 characters").max(15).matches(/^[a-zA-Z]+$/, "Only letters (EN)"),
-   lname: yup.string().required("Required field").min(2,"Last name must be at least 2 characters").max(15).matches(/^[a-zA-Z]+$/, "Only letters (EN)"),
-   username: yup.string().required().min(5).max(15).matches(/^[a-zA-Z-0-9]+$/, "Only letters and numbers"),
+   fname: yup.string().required("Required field.").min(2, "First name must be at least 2 characters.").max(15).matches(/^[a-zA-Z]+$/, "Only letters (EN)."),
+   lname: yup.string().required("Required field.").min(2, "Last name must be at least 2 characters.").max(15).matches(/^[a-zA-Z]+$/, "Only letters (EN)."),
+   username: yup.string().required().min(5).max(15).matches(/^[a-zA-Z-0-9]+$/, "Only letters and numbers."),
    password: yup.string().required().min(8).max(15)
-   .matches(/^.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?].*$/, "At Least one special character")
-   .matches(/^.*[0-9].*$/, "At Least one digit"),
+      .matches(/^.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?].*$/, "At Least one special character.")
+      .matches(/^.*[0-9].*$/, "At Least one digit."),
    gender: yup.string(),
    role: yup.string(),
    // picture: yup.string().matches(URL,"Valid image address (URL)"),
-   picture:yup.lazy((value:any) =>
-   /^data/.test(value)
-     ? yup.string()
-         .trim()
-         .matches(
-           /^data:([a-z]+\/[a-z0-9-+.]+(;[a-z-]+=[a-z0-9-]+)?)?(;base64)?,([a-z0-9!$&',()*+;=\-._~:@/?%\s]*)$/i,
-           'Must be a valid data URI',
-         )
-         .required()
-     : yup.string().trim().url('Must be a valid URL').required(),
- ),
+   picture: yup.lazy((value: any) =>
+      /^data/.test(value)
+         ? yup.string()
+            .trim()
+            .matches(
+               /^data:([a-z]+\/[a-z0-9-+.]+(;[a-z-]+=[a-z0-9-]+)?)?(;base64)?,([a-z0-9!$&',()*+;=\-._~:@/?%\s]*)$/i,
+               'Must be a valid data URI',
+            )
+            .required()
+         : yup.string().trim().url('Must be a valid URL').required("Picture url is required!"),
+   ),
    description: yup.string().max(512),
 }).required();
 
@@ -70,7 +72,7 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
       },
       mode: "onChange",
       resolver: yupResolver(schema)
-      
+
    });
    console.log(errors)
 
@@ -126,7 +128,7 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                            label="Username"
                            control={control}
                            readOnly={true}
-                           error={errors.username?.message}
+                           error={errors.username?.message}              
                         ></ControllerTextFieldInput>
                      </Grid>
 
@@ -169,7 +171,7 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                                  label="Password"
                                  control={control}
                                  error={errors.password?.message}
-                                 // defaultValue={editUser?.password}
+                              // defaultValue={editUser?.password}
                               ></ControllerTextFieldInput>
                            </Grid>
                               {
@@ -293,7 +295,7 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                                           >
                                              <MenuItem value={StatusEnum.Active}>Active</MenuItem>
                                              <MenuItem value={StatusEnum.Deactivated}>Deactivated</MenuItem>
-                                             <MenuItem value={StatusEnum.Suspended}>Syspended</MenuItem>
+                                             <MenuItem value={StatusEnum.Suspended}>Suspended</MenuItem>
                                           </Select>
                                        )}
                                     />
@@ -307,6 +309,7 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                            label="Picture (URL)"
                            control={control}
                            error={errors.picture?.message}
+                           maxLength={2048}
                         ></ControllerTextFieldInput>
                      </Grid>
 
@@ -322,7 +325,8 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                                     value={value}
                                     aria-label="minimum height"
                                     minRows={3}
-                                    maxLength={512}                                 
+                                    placeholder="Not necessary only if you are in the mood &#128516;"
+                                    maxLength={512}
                                  />
                               )}
                            />
@@ -331,6 +335,11 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                   </Grid>
                   <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
                      save
+                  </Button>
+                  <Button type="submit" fullWidth variant="outlined"
+                     onClick={handleEditMode}
+                     sx={{ mt: 1, mb: 6 }} >
+                     back
                   </Button>
                </Box>
             </Box>

@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
-import { red } from '@mui/material/colors';
+import { blue, red } from '@mui/material/colors';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { IFormData } from '../RegisterFormMUI/RegisterFormMUI';
 import { UserApi } from '../../Rest-APi-Client/client';
@@ -65,11 +65,11 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
          })
          .then(user => {
             alert(`***************************************************************************
-                                   You edited ${user.username}'s profile.`)			 
+                                   You edited ${user.username}'s profile.`)
          })
          .catch(err => alert(err))
-         // hover effects
-       
+      // hover effects
+
    }
    return (
       <>
@@ -81,29 +81,36 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
                   isAdminEdition={true}
                   handleEditMode={handleEditMode}></EditFormMUI>)
                :
-               <Card sx={{ maxWidth: 345, 
-               paddingBottom: "25px", position:"relative" ,
-               bgcolor:"black!important",
-               boxShadow: "2px 2px 6px rgb(102, 223, 159)",
-               color:"white",
-               
-                  '& MuiCardHeader-subheader':{
-                     color:"white"
+               <Card sx={{
+                  maxWidth: 345,
+                  paddingBottom: "20px", position: "relative",
+                  bgcolor: "black!important",
+                  // boxShadow: "2px 2px 6px rgb(102, 223, 159)",
+                  border:"1px solid white",
+                  boxShadow: "8px 15px rgb(31, 31, 31)",
+                  color: "white",
+
+                  '& MuiCardHeader-subheader': {
+                     color: "white"
                   },
-                  '& :hoover .MuiCard-root':{
-                     border:"2px solid red"
+                  '& :hoover .MuiCard-root': {
+                     border: "2px solid red"
                   },
                   '&:hover': {
                      boxShadow: "2px 2px 6px white",
-                     
-                   },
-                         
-                }}>
 
-                  <CardHeader sx={{color:"white",}}
+                  },
+
+               }}>
+
+                  <CardHeader sx={{
+                     color: "white",
+                     '& .MuiTypography-body2.MuiCardHeader-subheader': { opacity: "0.5" },
+                  }}
                      avatar={
-                        <Avatar sx={{ bgcolor: red[300] }} aria-label="recipe">
-                           {user.fname[0]}{user.lname[0]}
+                        // avatar color depends on user.gender
+                        <Avatar sx={{ bgcolor: `${user.gender > 1 ? red[300] : blue[800]}` }} aria-label="recipe">
+                          {( user.fname[0] + user.lname[0]).toUpperCase()}
                         </Avatar>
                      }
                      action={
@@ -113,14 +120,14 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
                      }
                      titleTypographyProps={{
                         fontSize: "22px",
-                        color:"white"
-                      }}
+                        color: "white"
+                     }}
                      subheaderTypographyProps={{
                         fontSize: "18px",
-                        color:"white"
-                      }}
+                        color: "white"
+                     }}
                      title={user.username}
-                     subheader ={`${user.fname}  ${user.lname}`}
+                     subheader={`${user.fname}  ${user.lname}`}
                   />
                   <CardMedia
                      component="img"
@@ -138,12 +145,14 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
                         </div>
                      )
                   }
-                  <CardContent sx={{fontSize:"16px"}}>
-                     <p style={{ paddingBottom: "8px" }}>Gender: {GenderEnum[user.gender]}</p>
-                     <p style={{ paddingBottom: "8px" }}>Status: {StatusEnum[user.status]}</p>
-                     <p style={{ paddingBottom: "8px" }}>Role: {RoleEnum[user.role]}</p>
-                     <p style={{ paddingBottom: "8px" }}>Created on: {user.timeOfCreation}</p>
-                     <p style={{ paddingBottom: "8px" }}>Edited on: {user.timeOfModification === null ? "none" : user.timeOfModification}</p>
+                  <CardContent sx={{ fontSize: "16px" }}>
+                     <p style={{ paddingBottom: "10px" }}>Gender: {GenderEnum[user.gender]}</p>
+                     <p style={{ paddingBottom: "10px",fontSize:"20px",color:`${user.status==1 ? "lightgreen":"gray"}`}}
+                     >Status: {StatusEnum[user.status]}</p>
+                     <p style={{ paddingBottom: "10px" ,fontSize:"20px" ,color:`${user.role==2 ? "#f7ba00":"white"}`}}
+                     >Role: {RoleEnum[user.role]}</p>
+                     <p style={{ paddingBottom: "10px",marginTop:"38px" }}>Created on: {user.timeOfCreation}</p>
+                     <p style={{ paddingBottom: "0px",marginBottom:"0px" }}>Edited on: {user.timeOfModification === null ? "none" : user.timeOfModification}</p>
                   </CardContent>
                </Card>
 

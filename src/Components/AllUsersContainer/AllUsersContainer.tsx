@@ -114,50 +114,39 @@ function AllUsersContainer({ loggedUser }: IAllUserContainerProps) {
    return (
       <div className={styles.allUsersContainer}>
          {
-            showCreateForm===false
-            ?<h1 className={styles.userListTitle}>Users list</h1>
-            :<p className={styles.userListTitle}>Creating new user ...</p>
-         }  
-         {
-            showCreateForm ?
-               null
+            showCreateForm === true
+               ? <>
+                  <h3 style={{ textAlign: "center", fontSize: "22px", color: "lime" }}> 
+                  Creating user ...</h3>
+                  <RegisterFormMUI
+                     handleCreateUser={handleCreateUser}
+                     isAdminUsingForm={true}
+                     handleShowCreateForm={handleShowCreateForm}
+                  ></RegisterFormMUI>
+               </>
                :
-               <Button type="submit" variant="contained"
-               sx={{ mt: 3, mb: 2 }}
-               className={styles.createNewUser}
-               onClick={() => setShowCreateForm(showCreateForm => !showCreateForm)}
-            > Create new user</Button>    
+               <>
+                  <h1 className={styles.userListTitle}>Users list</h1>
+                  <Filters
+                     filterValues={filter}
+                     onfilterChange={handleFilterChanges}
+                  ></Filters>
+                  <div className={styles.cardWrapper}>
+                     {
+                        (filtredUsers !== undefined && filtredUsers.length > 0)
+                           ? filtredUsers
+                           : (<h1 style={{ color: "lightgreen", textAlign: "center" }}>
+                              <i className="fa fa-warning" style={{ fontSize: "22px", color: "yellow", paddingRight: "12px" }}></i>
+                              There aren't any users with this filter!</h1>)
+                     }
+                  </div>
+                  <Button type="submit" variant="contained"
+                     sx={{ mt: 3, mb: 2 }}
+                     className={styles.createNewUser}
+                     onClick={() => setShowCreateForm(showCreateForm => !showCreateForm)}
+                  > Create new user</Button>
+               </>
          }
-
-         {
-            showCreateForm
-               ? <RegisterFormMUI
-                  handleCreateUser={handleCreateUser}
-                  isAdminUsingForm={true}
-                  handleShowCreateForm={handleShowCreateForm}
-               ></RegisterFormMUI>
-               : <Filters
-                  filterValues={filter}
-                  onfilterChange={handleFilterChanges}
-               ></Filters>
-         }
-
-
-         {
-            // if createUserForm is active dont'show users list (userCard)
-            showCreateForm === false
-            &&
-            <div className={styles.cardWrapper}>
-               {
-                  (filtredUsers !== undefined && filtredUsers.length > 0)
-                     ? filtredUsers
-                     : (<h1 style={{ color: "lightgreen" }}>
-                        <i className="fa fa-warning" style={{ fontSize: "22px", color: "yellow", paddingRight: "12px" }}></i>
-                        There aren't any users with this filter!</h1>)
-               }
-            </div>
-         }
-
       </div>
    );
 }
