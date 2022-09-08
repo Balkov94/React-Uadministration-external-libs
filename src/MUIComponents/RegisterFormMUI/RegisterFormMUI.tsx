@@ -66,7 +66,10 @@ const schema = yup.object({
                'Must be a valid data URI',
             )
             .required()
-         : yup.string().trim().url('Must be a valid URL').required("Picture url is required!"),
+         // : yup.string().trim().url('Must be a valid URL').required("Picture url is required!"),
+         : (value.length > 0
+            ? yup.string().trim().url('Must be a valid URL').required("Picture url is required!")
+            : yup.string().notRequired())
    ),
    description: yup.string().max(512),
 }).required();
