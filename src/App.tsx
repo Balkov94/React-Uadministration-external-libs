@@ -9,13 +9,11 @@ function App() {
           <div className={style.mainAppDiv}>
                <Header></Header>
                <FormContainer></FormContainer>
-               <Footer></Footer>       
-                      
+               <Footer></Footer>                           
           </div>
 
      );
 }
-
 export default App;
 
 

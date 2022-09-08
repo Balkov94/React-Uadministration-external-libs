@@ -6,7 +6,6 @@ import RegisterFormMUI, { IFormData } from "../../MUIComponents/RegisterFormMUI/
 import styles from "./AllUsersContainer.module.css"
 import UserCardMUI from "../../MUIComponents/UserCardMUI/UserCardMUI";
 import { Button } from "@mui/material";
-
 interface IAllUserContainerProps {
    loggedUser: IFormData;
 }
@@ -59,8 +58,8 @@ function AllUsersContainer({ loggedUser }: IAllUserContainerProps) {
             }
             UserApi.create(newUserObj)
                .then(res => {
-                  alert(`*************************************************************************
-						Successful created user - ${newUserObj.username}!`);
+                  alert(`************************************************************************* Successful created user - ${newUserObj.username}!`);
+					  
                   // setFetchedUsers(fetchedUsers => fetchedUsers.concat(res));
                   //put new user infront of the array
                   setFetchedUsers(fetchedUsers => [res, ...fetchedUsers]);

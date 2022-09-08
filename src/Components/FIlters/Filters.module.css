@@ -42,7 +42,7 @@
         }
    }
 
-   @media only screen and (max-width: 530px) {
+   @media only screen and (max-width: 600px) {
      .filterContainer .filterForm{
        flex-direction: column !important;
        zoom: 0.9;
@@ -50,6 +50,10 @@
      .filterContainer .filterForm{
           flex-direction: column !important;
           zoom: 0.9;
-        }
+            
+      }
+      .filterContainer form.filterForm{
+         width: 80%!important;
+      }
    }
 

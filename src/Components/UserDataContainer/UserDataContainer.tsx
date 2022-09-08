@@ -41,7 +41,6 @@ function UserDataContainer({ loggedUser,
 
                <div className={styles.profilePicContainer}>
                   <img className={styles.profilePic} src={loggedUser?.picture} alt="profile_picture" />
-                  <p>profile picture</p>
                </div>
 
             </div>
@@ -54,7 +53,7 @@ function UserDataContainer({ loggedUser,
                sx={{ mt: 3, mb: 2 }}
                className={styles.logoutBtn}
                onClick={handleIslogged}
-            > Logout</Button>
+            >Logout</Button>
          </div>
 
          {currEditMode

@@ -45,7 +45,7 @@ function ControllerTextFieldInput<TFieldValues extends FieldValues>(
             control={control}
             render={({ field }) =>
                <TextField
-                  label={readOnly?(label+" is not changeable*"):label}
+                  label={readOnly?(label+" - not changeable*"):label}
                   disabled={disabled}
                   size={size}
                   type={type}

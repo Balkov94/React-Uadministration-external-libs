@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -58,7 +57,17 @@ const schema = yup.object({
    .oneOf([yup.ref('password'), null], 'Passwords must match!'),
    gender: yup.string(),
    role: yup.string(),
-   picture: yup.string().url(),
+   picture: yup.lazy((value: any) =>
+      /^data/.test(value)
+         ? yup.string()
+            .trim()
+            .matches(
+               /^data:([a-z]+\/[a-z0-9-+.]+(;[a-z-]+=[a-z0-9-]+)?)?(;base64)?,([a-z0-9!$&',()*+;=\-._~:@/?%\s]*)$/i,
+               'Must be a valid data URI',
+            )
+            .required()
+         : yup.string().trim().url('Must be a valid URL').required("Picture url is required!"),
+   ),
    description: yup.string().max(512),
 }).required();
 
@@ -245,7 +254,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, sw
                            label="Picture (URL)"
                            control={control}
                            error={errors.picture?.message}
-                           maxLength={2048}
+                           maxLength={10000}
                         ></ControllerTextFieldInput>
                      </Grid>
                      <InputLabel id="description" sx={{ width: "100%", pl: "32px", pr: "32px" }}>Description:</InputLabel>

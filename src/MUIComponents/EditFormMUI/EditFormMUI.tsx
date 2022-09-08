@@ -20,10 +20,6 @@ import styles from "./overrideMUIStyles.module.css"; //some little override -> m
 import { formsMUIoverride } from '../LoginFormMUI/LoginFormMUI';
 
 const theme = createTheme();
-  
-
-
-//matches(/[^a-zA-ZаА-яЯ]/)
 const URL = /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
 const schema = yup.object({
    fname: yup.string().required("Required field.").min(2, "First name must be at least 2 characters.").max(15).matches(/^[a-zA-Z]+$/, "Only letters (EN)."),
@@ -49,7 +45,6 @@ const schema = yup.object({
    description: yup.string().max(512),
 }).required();
 
-
 interface IEditFormProps {
    handleFormData(formData?: Partial<IFormData>): void;
    isAdminEdition?: boolean;
@@ -74,8 +69,7 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
       resolver: yupResolver(schema)
 
    });
-   console.log(errors)
-
+  
    const sendFormData = (data: IFormData, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
          event.preventDefault();
@@ -128,7 +122,7 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                            label="Username"
                            control={control}
                            readOnly={true}
-                           error={errors.username?.message}              
+                           error={errors.username?.message}
                         ></ControllerTextFieldInput>
                      </Grid>
 
@@ -309,7 +303,7 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                            label="Picture (URL)"
                            control={control}
                            error={errors.picture?.message}
-                           maxLength={2048}
+                           maxLength={10000}                         
                         ></ControllerTextFieldInput>
                      </Grid>
 

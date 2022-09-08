@@ -85,11 +85,10 @@ export default function UserCardMUI({ user, handleDeleteUser, handleEditUser }: 
                   maxWidth: 345,
                   paddingBottom: "20px", position: "relative",
                   bgcolor: "black!important",
-                  // boxShadow: "2px 2px 6px rgb(102, 223, 159)",
-                  border:"1px solid white",
-                  boxShadow: "8px 15px rgb(31, 31, 31)",
+                  border:"1px solid gray",   
+                  boxShadow: "0px 0px 30px gray",
                   color: "white",
-
+                  cursor:"default",
                   '& MuiCardHeader-subheader': {
                      color: "white"
                   },

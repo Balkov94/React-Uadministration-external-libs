@@ -2,13 +2,8 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -18,11 +13,8 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import ControllerTextFieldInput from '../ControllerTextFieldInput/ControllerTextFieldInput';
-import { alpha, css, InputBase, makeStyles, OutlinedInputProps, responsiveFontSizes } from '@mui/material';
-import styled from '@emotion/styled';
-
-import styles from "./styles.module.css";
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+
 export interface ILoginFormProps {
    switchForm?: (event: React.MouseEvent<HTMLButtonElement>) => void;
    handleLoginData(formData?: Partial<IFormData>): void;
@@ -158,6 +150,8 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
                      type="password"
                      error={errors.password?.message}
                   />
+                  <p style={{color:"gray"}}>Tips for testing: username:1x8, password:1x8+!</p>
+                  
                   <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                      Login
                   </Button>

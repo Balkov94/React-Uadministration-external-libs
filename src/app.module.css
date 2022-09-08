@@ -12,7 +12,7 @@ form{
     border-radius: 15px 0px 15px 15px;
     margin-bottom: 30px;
     margin-top: 30px;
-    border: 2px solid green !important;
+    box-shadow :20px 20px 50px black ;
     
 }
 
@@ -47,9 +47,9 @@ button:hover{
      cursor: pointer;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 610px) {
      form {
-       zoom: 0.9;
+       zoom: 0.8;
        margin: auto;
      }
    }

@@ -9,7 +9,6 @@
      background-size: cover;
      min-height: 80vh;
      max-height: fit-content;
-
 }
 
 .data {
@@ -21,9 +20,11 @@
      padding-top: 12px;
      padding-bottom: 26px;
      /* border: 1px solid green; */
-     border: 1px solid rgb(31, 31, 31);
+     border: 1px solid rgb(110, 110, 110);
      background-color: black;
      opacity: 0.9;
+
+     box-shadow: 0px 20px 40px 0px  black;
 }
 
 .data p {
@@ -90,6 +91,11 @@
 @media only screen and (max-width: 600px) {
      .descriptionP {
           width: 100%;  
+     }
+     .logoutBtn{
+      right: 48px;
+      top: -20px;
+      zoom: 0.8;
      }
 
 }
