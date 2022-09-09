@@ -53,7 +53,7 @@ interface IEditFormProps {
 }
 
 export default function EditFormMUI({ editUser, handleFormData, handleEditMode, isAdminEdition }: IEditFormProps) {
-   const { handleSubmit, control, formState: { errors }, reset } = useForm<IFormData>({
+   const { handleSubmit, control, formState: { errors, isValid , isDirty } } = useForm<IFormData>({
       defaultValues: {
          fname: editUser?.fname,
          lname: editUser?.lname,
@@ -327,8 +327,8 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                         </FormControl>
                      </Grid>
                   </Grid>
-                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
-                     save
+                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={(isValid && isDirty)===false} >
+                        save changes
                   </Button>
                   <Button type="submit" fullWidth variant="outlined"
                      onClick={handleEditMode}

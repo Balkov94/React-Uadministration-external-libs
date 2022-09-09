@@ -75,7 +75,7 @@ const schema = yup.object({
 }).required();
 
 export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, switchForm, handleShowCreateForm }: IRegisterFormProps) {
-   const { handleSubmit, control, formState: { errors }, } = useForm<IFormData>({
+   const { handleSubmit, control, formState: { errors , isValid , isDirty }, } = useForm<IFormData>({
       defaultValues: {
          fname: "",
          lname: "",
@@ -282,7 +282,7 @@ export default function RegisterFormMUI({ handleCreateUser, isAdminUsingForm, sw
                         </FormControl>
                      </Grid>
                   </Grid>
-                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
+                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={(isValid && isDirty)===false}>
                      Register
                   </Button>
                   {

@@ -31,12 +31,12 @@ const schema = yup.object({
 }).required();
 
 const theme = createTheme();
-export const formsMUIoverride={
-   dispay:"flex",
-   justifyContent:"center",
-   alignItems:"center",
-   
-   
+export const formsMUIoverride = {
+   dispay: "flex",
+   justifyContent: "center",
+   alignItems: "center",
+
+
    '& .MuiTextField-root': {
       bgcolor: "rgb(10,25,41)",
       marginBottom: "24px",
@@ -45,9 +45,9 @@ export const formsMUIoverride={
    '& .MuiInputBase-input': {
       // color: "white",
       fontSize: "20px",
-      bgcolor:"rgb(10,25,41)",
+      bgcolor: "rgb(10,25,41)",
    },
-   '& .MuiInputBase-root':{
+   '& .MuiInputBase-root': {
       color: "white",
    },
    '& > :not(style)': {
@@ -69,22 +69,27 @@ export const formsMUIoverride={
       '&.Mui-focused fieldset': {
          borderColor: 'primary',
       },
-      '&.MuiFormHelperText-root':{
-         size:"medium",
-         fontSize:"25px"
-
+      '&.MuiFormHelperText-root': {
+         size: "medium",
+         fontSize: "25px"
       },
+
+   },
+   '& .MuiButtonBase-root.Mui-disabled': {
+      backgroundColor: "#5182b9",
+      color: "white",
+      opacity: "0.8"
    },
 }
 
 export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginFormProps) {
-   const { handleSubmit, control, formState: { errors } } = useForm<ILoginFormInputs>({
+   const { handleSubmit, control, formState: { errors, isValid, isDirty } } = useForm<ILoginFormInputs>({
       defaultValues: { username: "", password: "" },
       mode: "onChange",
       resolver: yupResolver(schema)
 
    });
- 
+
 
    const sendSubmit = (data: ILoginFormInputs, event: React.BaseSyntheticEvent<object, any, any> | undefined) => {
       if (event !== undefined) {
@@ -107,7 +112,7 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
                }}
             >
                <Avatar sx={{ m: 1, bgcolor: '#2286f7' }}>
-                  <MeetingRoomIcon style={{fontSize:"34px"}} />
+                  <MeetingRoomIcon style={{ fontSize: "34px" }} />
                </Avatar>
                <Typography component="h1" variant="h5">
                   Login
@@ -137,7 +142,7 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
                            value={value}
                            onChange={onChange}
                            error={errors.username?.message ? true : false}
-                           helperText={errors.username?.message || ""}                        
+                           helperText={errors.username?.message || ""}
                         />
                      )}
                   />
@@ -150,9 +155,12 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
                      type="password"
                      error={errors.password?.message}
                   />
-                  <p style={{color:"gray"}}>Tips for testing: username:1x8, password:1x8+!</p>
-                  
-                  <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+                  <p style={{ color: "gray" }}>Tips for testing: username:1x8, password:1x8+!</p>
+
+                  <Button type="submit" fullWidth variant="contained"
+                     disabled={(isValid && isDirty)===false} sx={{ mt: 3, mb: 2 }}
+
+                  >
                      Login
                   </Button>
                   <Button variant="contained" color="success" fullWidth sx={{ mt: 0, mb: 2 }}
