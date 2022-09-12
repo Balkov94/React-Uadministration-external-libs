@@ -65,7 +65,8 @@ function UserDataContainer({ loggedUser,
          }
          {/* element wrapper ->all users card + options to edit/delete them */}
          {
-            (RoleEnum[loggedUser!.role] === "Admin" && loggedUser !== undefined)
+            (RoleEnum[loggedUser!.role] === "Admin" &&
+               loggedUser !== undefined && StatusEnum[loggedUser.status] === "Active")
             && <AllUsersContainer loggedUser={loggedUser}></AllUsersContainer>
          }
 

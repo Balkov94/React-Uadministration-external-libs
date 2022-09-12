@@ -158,7 +158,7 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                      </Grid>
                      {
                         // SELF EDITION CHECKS (show or not ROLE and STATUS)
-                        isAdminEdition === undefined ?
+                        (isAdminEdition === undefined) ?
                            <><Grid item xs={12}>
                               <ControllerTextFieldInput
                                  name="password"
@@ -169,7 +169,9 @@ export default function EditFormMUI({ editUser, handleFormData, handleEditMode, 
                               ></ControllerTextFieldInput>
                            </Grid>
                               {
-                                 (RoleEnum[editUser!.role] === "Admin")
+                                 // check for Admin and Active status
+                                 (RoleEnum[editUser!.role] === "Admin" 
+                                 && StatusEnum[editUser!.status]==="Active")
                                  &&
                                  <><Grid item xs={12} sm={6}>
                                     <FormControl>

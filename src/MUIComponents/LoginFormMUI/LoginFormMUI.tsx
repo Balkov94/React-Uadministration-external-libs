@@ -98,6 +98,13 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
       handleLoginData(data);
    };
 
+   const handleEnterKey=(event:React.KeyboardEvent)=>{
+      if(event.key==="Enter"){
+         handleSubmit(sendSubmit);
+      }
+
+   }
+
    return (
       <ThemeProvider theme={theme}>
          <Container component="main" maxWidth="xs">
@@ -122,6 +129,8 @@ export default function LoginFormMUI({ switchForm, handleLoginData }: ILoginForm
                {/* !!! Controller syntax without GENERIC factory function */}
                <Box component="form"
                   onSubmit={handleSubmit(sendSubmit)}
+                  onKeyDown={(event:React.KeyboardEvent)=>handleEnterKey(event)}
+
                   sx={{
                      mt: 1,
                      ...formsMUIoverride

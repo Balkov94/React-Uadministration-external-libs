@@ -84,7 +84,7 @@ function FormContainer() {
       setEditMode(editMode => !editMode);
       // if edit mode is on block scrolling
       blockScrolling(editMode)
-  
+
    }
 
    const handleUserEdition = (formData: UserClass) => {
@@ -136,7 +136,7 @@ export default FormContainer;
 
 
 // *func Block srcoling when EditForm is open (EditForm is position FIXED)
-export const blockScrolling = (editMode:boolean) => {
+export const blockScrolling = (editMode: boolean) => {
    if (editMode === false) {
       document.body.style.overflow = "hidden";
    }
